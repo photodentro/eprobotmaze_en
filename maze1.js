@@ -77,6 +77,7 @@ function drawSquare(squareX,squareY,squareCode){//thanks @alkisg
     ctx.beginPath();
     ctx.strokeRect(squareX,squareY,gWidth,gHeight);
     ctx.lineWidth = 3;
+    ctx.lineCap = 'round';
     ctx.setLineDash([]);
     ctx.beginPath();
     if (squareCode & 1) {
@@ -135,15 +136,96 @@ function drawMazeonCanvas(){
     ge('stage').style.backgroundColor = "white";
     c = document.getElementById('mycanvas');
     ctx = c.getContext("2d");
-    ctx.clearRect(0,0,c.width,c.height);
+    ctx.fillStyle = '#EAE0CC'
+    ctx.fillRect(0,0,c.width,c.height);
 
-    for (var i=0; i<mazeColumns; i++)
+    ctx.strokeRect(0.5,0.5,c.width-3,c.height-1);
+    
+    for (var i=0; i<mazeColumns-1; i++)
     {
+        xaxis = (i+1)*42.5+i%2*0.5;
+        ctx.beginPath();
+        ctx.setLineDash([5]);
+        ctx.lineWidth = 0.5;
+        ctx.strokeStyle = 'gray';
+        ctx.moveTo(xaxis,0);
+        ctx.lineTo(xaxis,c.height-1)
+        ctx.stroke();
+        ctx.closePath();
+        ctx.beginPath();
+        ctx.setLineDash([]);
+        ctx.lineWidth = 1;
+        ctx.lineCap = 'round'
+        ctx.strokeStyle = 'black';
+        inVerLine = false;
         for (var j=0; j<mazeRows; j++){
-            drawSquare(i*42.6,120-j*30,g.maze[getId(i,j)]);
-        }
-    }
+            /*drawSquare(i*42.6,120-j*30,g.maze[getId(i,j)]);*/
+            
+            if (g.maze[getId(i,j)]&8){
+                console.log(i,j,inVerLine)
+                if (!inVerLine){
+                    ctx.moveTo(xaxis,120-j*30+30);
+                    inVerLine = true;
+                }
+            }
+            else{
+                if (inVerLine){
+                    ctx.lineTo(xaxis,120-j*30+30)
+                    inVerLine = false;
+                }
+            }
 
+        }
+        if (inVerLine){
+            ctx.lineTo(xaxis,120-j*30+30)
+            inVerLine = false;
+        }
+        ctx.stroke();
+        ctx.closePath();
+    }
+    
+
+    ctx.beginPath();
+    for (var j=0; j<mazeRows; j++)
+    {
+        yaxis = 120-j*30+0.5+30;
+        ctx.beginPath();
+        ctx.setLineDash([5]);
+        ctx.lineWidth = 0.5;
+        ctx.strokeStyle = 'gray';
+        ctx.moveTo(0,yaxis);
+        ctx.lineTo(c.width-1,yaxis);
+        ctx.stroke();
+        ctx.closePath();
+        ctx.beginPath();
+        ctx.setLineDash([]);
+        ctx.lineWidth = 1;
+        ctx.strokeStyle = 'black';
+        inHorLine = false;
+        for (var i=0; i<mazeColumns; i++){
+            if (g.maze[getId(i,j)]&1){
+                console.log(i,j,inHorLine)
+                if (!inHorLine){
+                    ctx.moveTo(i*42.5,yaxis);
+                    inHorLine = true;
+                }
+            }
+            else{
+                if (inHorLine){
+                    ctx.lineTo(i*42.5,yaxis)
+                    inHorLine = false;
+                }
+            }
+
+        }
+        if (inHorLine){
+            ctx.lineTo(i*42.5,yaxis)
+            inHorLine = false;
+        }
+        ctx.stroke();
+        ctx.closePath();
+
+    }
 }
 
 function newMaze(){
@@ -165,8 +247,8 @@ function newMaze(){
         g.maze[id] = g.maze[id] ^ SET
     }
 
-    /*debug
-    g.maze = [3,13,7,5,1,5,9,10,3,5,5,12,11,10,6,12,3,5,5,4,12,3,9,10,3,9,7,9,14,6,4,12,6,5,12];*/
+    //debug    
+    //g.maze = [3,13,7,5,1,5,9,10,3,5,5,12,11,10,6,12,3,5,5,4,12,3,9,10,3,9,7,9,14,6,4,12,6,5,12];
     
     drawMazeonCanvas();
 

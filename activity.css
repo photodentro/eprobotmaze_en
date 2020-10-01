@@ -33,7 +33,7 @@ body {
 
 #main {
   /* SVG backgrounds need preserveAspectRatio="none" in many browsers. */
-  background: rgb(245,214,86) url('resource/background.svg');
+  background-color: darkgreen;/* url('resource/background.svg');*/
   -webkit-background-size: 100% 100%;
   -moz-background-size: 100% 100%;
   -o-background-size: 100% 100%;
@@ -239,7 +239,7 @@ body {
   background-repeat: no-repeat;
 }
 #stagebkg{
-  background-color:white;
+  background-color:gray;
   position:absolute;
   display:inline-block;
   margin-bottom: 1.5em;
