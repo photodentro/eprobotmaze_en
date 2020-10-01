@@ -263,7 +263,10 @@ function trace(startpoint,endpoint){
     ctx.setLineDash([]);
     ctx.lineWidth = 1;
     ctx.beginPath();
-    ctx.strokeRect(startpoint.x,startpoint.y,endpoint.x-startpoint.x,endpoint.y-startpoint.y);
+    ctx.strokeStyle = 'darkred';
+    ctx.moveTo(startpoint.x+0.5,startpoint.y+0.5);
+    ctx.lineTo(endpoint.x+0.5,endpoint.y+0.5);
+    
     ctx.stroke();
     ctx.closePath();
   }

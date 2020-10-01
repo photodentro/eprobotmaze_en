@@ -136,8 +136,8 @@ function drawMazeonCanvas(){
     ge('stage').style.backgroundColor = "white";
     c = document.getElementById('mycanvas');
     ctx = c.getContext("2d");
-    ctx.fillStyle = '#EAE0CC'
-    ctx.fillRect(0,0,c.width,c.height);
+    ctx.fillStyle = '#ffffff';
+    ctx.fillRect(0,0,c.width-1,c.height);
 
     ctx.strokeRect(0.5,0.5,c.width-3,c.height-1);
     
