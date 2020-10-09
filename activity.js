@@ -241,7 +241,7 @@ function positionToCanvas(){
   position = act.position;
   point = {};
   point.y = position[1]*30 + 15;
-  point.x = position[0]*43 + 21.5;
+  point.x = position[0]*43.5 + 43.5/2;
   return(point);
 }
 
@@ -682,7 +682,7 @@ function init(maze,levels){
   bindCommand('cright',RT);
 
   ge('cgo').addEventListener('click',function(event){
-    if (!act.play){
+      if (!act.play){
     	if (act.outofplace){
     		act.cmdExec = 0;
     		clearTrace();

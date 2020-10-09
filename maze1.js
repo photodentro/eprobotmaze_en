@@ -73,7 +73,7 @@ function drawSquare(squareX,squareY,squareCode){//thanks @alkisg
     var gWidth = 42.3;//must be the scaling
     var gHeight = 30;
     ctx.lineWidth = 0.2;
-    ctx.setLineDash([3]);
+    ctx.setLineDash([5,15]);
     ctx.beginPath();
     ctx.strokeRect(squareX,squareY,gWidth,gHeight);
     ctx.lineWidth = 3;
@@ -137,7 +137,7 @@ function drawMazeonCanvas(){
     c = document.getElementById('mycanvas');
     ctx = c.getContext("2d");
     ctx.fillStyle = '#ffffff';
-    ctx.fillRect(0,0,c.width-1,c.height);
+    ctx.fillRect(0,0,c.width-2,c.height);
 
     ctx.strokeRect(0.5,0.5,c.width-3,c.height-1);
     
@@ -312,7 +312,7 @@ function newLevel(level){
         pIndex = g.positions.length-1;
     }
     act.exit = [g.positions[pIndex].x,4-g.positions[pIndex].y];
-    ge('exit').style.marginLeft = sformat('{}em',act.exit[0]*6);
+    ge('exit').style.marginLeft = sformat('{}em',act.exit[0]*6.2);
     ge('exit').style.marginTop = sformat('{}em',act.exit[1]*6);
 }
 

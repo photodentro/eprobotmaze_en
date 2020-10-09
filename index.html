@@ -28,24 +28,23 @@ SPDX-License-Identifier: CC-BY-SA-4.0
   <div id = "ui">
     <div id="buttons">
   	<div id = "up">
-  		<img id="cforward" src="resource/beebot-fd.svg" title="Forward" alt="Forward" />
+  		<img id="cforward" class="bcmd" src="resource/beebot-fd.svg" title="Forward" alt="Forward" />
   	</div>
   	<div id = "middle">
-  		<img id="cleft" src="resource/beebot-lt.svg" title="Left" alt="Left" />
-  		<img id="cright" src="resource/beebot-rt.svg" title="Right" alt="Right" />
-  	</div>
+  		<img class="bcmd" id="cleft" src="resource/beebot-lt.svg" title="Left" alt="Left" />
+  		<img class="bcmd" id="cright" src="resource/beebot-rt.svg" title="Right" alt="Right" />
+  	</div> 
   	<div id = "down">
-		<img id="cbackward" src="resource/beebot-bk.svg" title="Backward" alt="Backward" />
+		<img class="bcmd" id="cbackward" src="resource/beebot-bk.svg" title="Backward" alt="Backward" />
     </div>
   </div>
     <div id="programButtons">
-      <img class="progButtons" id="cpencil" src="resource/pencil-off.svg" title="Trace" alt="Trace"/>
       <img class="progButtons" id="cgo" src="resource/beebot-go.svg" title="Go" alt="Go"/>
-      <img class="progButtons" id="cpause" src="resource/beebot-pa.svg" title="Pause" alt="Pause"/>
+      <img class="progButtons" style="display:none;"id="cpause" src="resource/beebot-pa.svg" title="Pause" alt="Pause">
       <img class="progButtons" id="cstop" src="resource/beebot-st.svg" title="Stop" alt="Stop"/>
       <img class="progButtons" id="cdelete1" src="resource/beebot-de1.svg" title="Delete command" alt="Delete command">
       <img class="progButtons" id="cdelete" src="resource/beebot-de.svg" title="Delete all" alt="Delete all"/>
-      <img class="progButtons" id="newmaze" src="resource/newmaz.svg" title="New maze" alt="New maze">
+      <img class="progButtons" id="cpencil" src="resource/pencil-off.svg" title="Trace" alt="Trace"/>
     </div>
   </div>
   <div id="program">
@@ -248,6 +247,7 @@ SPDX-License-Identifier: CC-BY-SA-4.0
     <img id="bar_next" src="resource/bar_next.svg" alt="Next level" title="Next level"/>
 
   </div>
+  <div id=newmazediv><img class="progButtons" id="newmaze" src="resource/newmaz.svg" title="New maze" alt="New maze"></div>
    </div>
 <div id="help"><div class="dialog">Help the ladybird reach the flower. Write a program with the arrows and run it.</div>
 </div>
