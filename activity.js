@@ -664,15 +664,12 @@ function init(maze,levels){
   }
 
   restart();
+  newMaze(0);
   if (maze){
-    newMaze();
-    ge('newmaze').addEventListener('click',function(){
-       newMaze();
-       if (levels){
-       	ge('level').innerHTML = act.level + 1;
-       }
-  });
-
+    ge('maze0').addEventListener('click',function(){newMaze(0);});
+    ge('maze1').addEventListener('click',function(){newMaze(1);});
+    ge('maze2').addEventListener('click',function(){newMaze(2);});
+    ge('maze3').addEventListener('click',function(){newMaze(3);});
   }
 
 

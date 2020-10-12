@@ -162,7 +162,6 @@ function drawMazeonCanvas(){
             /*drawSquare(i*42.6,120-j*30,g.maze[getId(i,j)]);*/
             
             if (g.maze[getId(i,j)]&8){
-                console.log(i,j,inVerLine)
                 if (!inVerLine){
                     ctx.moveTo(xaxis,120-j*30+30);
                     inVerLine = true;
@@ -204,7 +203,6 @@ function drawMazeonCanvas(){
         inHorLine = false;
         for (var i=0; i<mazeColumns; i++){
             if (g.maze[getId(i,j)]&1){
-                console.log(i,j,inHorLine)
                 if (!inHorLine){
                     ctx.moveTo(i*42.5,yaxis);
                     inHorLine = true;
@@ -228,27 +226,38 @@ function drawMazeonCanvas(){
     }
 }
 
-function newMaze(){
-	level = 0;
+function newMaze(mazenum){
+    level = 0;
 	act.level  = 0;
     g = null;
     g = {maze: []};
     for (var id = 0; id < mazeColumns * mazeRows; ++id) {
         g.maze[id] = 15;
     }
+    switch (mazenum){
+        case 0: // Generate g.maze 
+            generateMaze(Math.floor(Math.random() * mazeColumns),
+                     Math.floor(Math.random() * mazeRows));
+            // Remove set 
+            for (var id = 0; id < mazeColumns * mazeRows; ++id) {
+                g.maze[id] = g.maze[id] ^ SET
+            }
+            console.log(g.maze.join(','));
+            break;
+        case 1:
+            g.maze = [ 3,13, 7, 5, 1, 5, 9,10, 3, 5, 5,12,11,10, 6,12, 3, 5, 5, 4,12, 3, 9,10, 3, 9, 7, 9,14, 6, 4,12, 6, 5,12];
+            break;
+        case 2:
+            g.maze = [ 3,13, 7, 5, 1, 5, 9,10, 3, 5, 5,12,11,10, 6,12, 3, 5, 5, 4,12, 3, 9,10, 3, 9, 7, 9,14, 6, 4,12, 6, 5,12];
+            break;
+        case 3:
+            g.maze = [ 3,13, 3, 5, 5, 1,13, 6, 9, 2, 5,13, 6, 9, 3,12,10, 3, 5, 5, 8, 2, 5,12,10, 3,13,10,14, 7, 5,12, 6, 5,12];
+            break;
+        }    
     
-    // Generate g.maze 
-    
-    generateMaze(Math.floor(Math.random() * mazeColumns),
-             Math.floor(Math.random() * mazeRows));
-    
-    // Remove set 
-    for (var id = 0; id < mazeColumns * mazeRows; ++id) {
-        g.maze[id] = g.maze[id] ^ SET
-    }
 
-    //debug    
-    //g.maze = [3,13,7,5,1,5,9,10,3,5,5,12,11,10,6,12,3,5,5,4,12,3,9,10,3,9,7,9,14,6,4,12,6,5,12];
+
+    
     
     drawMazeonCanvas();
 
@@ -280,6 +289,9 @@ function newMaze(){
     act.exit = [g.positions[pIndex].x,4-g.positions[pIndex].y];
     ge('exit').style.marginLeft = sformat('{}em',act.exit[0]*6);
     ge('exit').style.marginTop = sformat('{}em',act.exit[1]*6);
+    if (levels){
+      ge('level').innerHTML = act.level + 1;
+    }
 }
 
 
